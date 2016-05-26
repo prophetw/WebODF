@@ -1169,7 +1169,7 @@
          * @param {string} url
          * @return {undefined}
          */
-        function load(url) {
+        function load(url,callback) {
             // clean up
             loadingQueue.clearQueue();
 
@@ -1185,6 +1185,9 @@
                 // fires before the assignment above happens.
                 odfcontainer = container;
                 refreshOdf(false);
+                if(callback && typeof callback === 'function'){
+                    callback();
+                }
             });
         }
         this["load"] = load;
